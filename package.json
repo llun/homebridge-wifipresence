@@ -1,0 +1,21 @@
+{
+  "name": "homebridge-wifipresence",
+  "version": "1.0.0",
+  "description": "Occupancy detection via wifi mac address",
+  "main": "index.js",
+  "keywords": [
+    "homebridge-plugin",
+    "wifi",
+    "homekit"
+  ],
+  "author": "Maythee Anegboonlap <null@llun.me>",
+  "license": "ISC",
+  "dependencies": {
+    "co": "^4.6.0",
+    "lodash": "^4.17.4"
+  },
+  "engines": {
+    "node": ">=0.12.0",
+    "homebridge": ">=0.4.9"
+  }
+}

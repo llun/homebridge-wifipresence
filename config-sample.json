@@ -1,0 +1,24 @@
+{
+  "bridge": {
+    "name": "Homebridge",
+    "username": "CD:22:3D:E3:CE:30",
+    "port": 51826,
+    "pin": "031-45-154"
+  },
+
+  "description": "This is an example configuration for the WifiPresence homebridge plugin",
+
+  "accessories": [
+    {
+      "accessory": "WifiPresence",
+      "name": "Main Wifi",
+      "room": "Living room",
+      "clients": ["MAC ADDRESS1"],
+      "file": "/var/lib/misc/presence.wifi"
+    }
+  ],
+
+  "platforms": [
+
+  ]
+}
