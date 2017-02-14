@@ -5,6 +5,9 @@ const co = require('co')
 const DEFAULT_PRESENCE_PATH = '/var/lib/misc/presence.wifi'
 let Service, Characteristic
 
+const OCCUPIED = 1
+const NON_OCCUPIED = 0
+
 class WifiPresenceAccessory {
   constructor (log, config) {
     this.log = log
@@ -18,6 +21,7 @@ class WifiPresenceAccessory {
     this.service
       .getCharacteristic(Characteristic.OccupancyDetected)
       .on('get', callback => this.isOccupied(callback))
+    this.currentStatus = -1
 
     fs.watch(this.presenceFile, { persistent: false }, (type, filename) => {
       if (type === 'change') {
@@ -27,20 +31,19 @@ class WifiPresenceAccessory {
   }
 
   isOccupied (callback = _.noop) {
-    const { log, mac, service } = this
-    const readPresenceFile = this.readPresenceFile.bind(this)
+    const accessory = this
     co(function* () {
-      const content = yield readPresenceFile()
+      const content = yield accessory.readPresenceFile()
       const allMACs = content.trim().split('\n')
-      if (_.intersection(allMACs, mac).length > 0) {
-        log('occupied')
-        service.setCharacteristic(Characteristic.OccupancyDetected, 1)
-        callback(null, 1)
-      } else {
-        log('not-occupied')
-        service.setCharacteristic(Characteristic.OccupancyDetected, 0)
-        callback(null, 0)
+      const status = _.intersection(allMACs, accessory.mac).length > 0 ? OCCUPIED : NON_OCCUPIED
+      accessory.log(`Occupied statue: ${status}`)
+
+      if (this.currentStatus !== status) {
+        accessory.service.setCharacteristic(Characteristic.OccupancyDetected, OCCUPIED)
+        this.currentStatus = OCCUPIED
       }
+
+      callback(null, this.currentStatus)
     })
     .catch(error => callback(error, 0))
   }
