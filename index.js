@@ -38,12 +38,12 @@ class WifiPresenceAccessory {
       const status = _.intersection(allMACs, accessory.mac).length > 0 ? OCCUPIED : NON_OCCUPIED
       accessory.log(`Occupied statue: ${status}`)
 
-      if (this.currentStatus !== status) {
+      if (accessory.currentStatus !== status) {
         accessory.service.setCharacteristic(Characteristic.OccupancyDetected, OCCUPIED)
-        this.currentStatus = OCCUPIED
+        accessory.currentStatus = OCCUPIED
       }
 
-      callback(null, this.currentStatus)
+      callback(null, accessory.currentStatus)
     })
     .catch(error => callback(error, 0))
   }
