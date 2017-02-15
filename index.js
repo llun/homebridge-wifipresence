@@ -39,8 +39,8 @@ class WifiPresenceAccessory {
       accessory.log(`Occupied statue: ${status}`)
 
       if (accessory.currentStatus !== status) {
-        accessory.service.setCharacteristic(Characteristic.OccupancyDetected, OCCUPIED)
-        accessory.currentStatus = OCCUPIED
+        accessory.service.setCharacteristic(Characteristic.OccupancyDetected, status)
+        accessory.currentStatus = status
       }
 
       callback(null, accessory.currentStatus)
