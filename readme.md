@@ -23,7 +23,7 @@ Install plugin `npm install -g homebridge-wifipresence` and add accessories to h
       "name": "Main Wifi",
       "room": "Living room",
       "clients": ["MAC ADDRESS1"],
-      "file": "/var/lib/misc/presence.wifi"
+      "presenceFile": "/var/lib/misc/presence.wifi"
     }
   ],
 
@@ -35,7 +35,7 @@ Install plugin `npm install -g homebridge-wifipresence` and add accessories to h
 
 `MAC ADDRESS1` is device wifi MAC for telling homebridge when this MAC is present, make the room occipied. It can have more than 1 MAC address.
 
-`file` is path to list of MAC address, currently default is `/var/lib/misc/presence.wifi` same as in [presence.sh](presence.sh) script.
+`presenceFile` is path to list of MAC address, currently default is `/var/lib/misc/presence.wifi` same as in [presence.sh](presence.sh) script.
 
 Run `presence.sh` file in router/access point to gathering devices MAC address from wifi interfaces.
 
