@@ -15,7 +15,7 @@ class WifiPresenceAccessory {
     this.name = config.name
     this.room = config.room
     this.presenceFile = config.presenceFile || DEFAULT_PRESENCE_PATH
-    this.mac = config.mac
+    this.clients = config.clients
 
     this.service = new Service.OccupancySensor(this.name)
     this.service
@@ -35,7 +35,7 @@ class WifiPresenceAccessory {
     co(function* () {
       const content = yield accessory.readPresenceFile()
       const allMACs = content.trim().split('\n')
-      const status = _.intersection(allMACs, accessory.mac).length > 0 ? OCCUPIED : NON_OCCUPIED
+      const status = _.intersection(allMACs, accessory.clients).length > 0 ? OCCUPIED : NON_OCCUPIED
       accessory.log(`Occupied statue: ${status}`)
 
       if (accessory.currentStatus !== status) {
