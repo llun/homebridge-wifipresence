@@ -1,6 +1,6 @@
 # HomeBridge Wifi Presence
 
-Detect presence in the room via wifi. This plugin is using MAC address to detect is anyone in the room or not.
+Detect presence in the room via WiFi. This plugin uses MAC addresses to detect when somebody is in a room or not, depending on which network they are connected to.
 
 ## Setup
 
@@ -22,7 +22,7 @@ Install plugin `npm install -g homebridge-wifipresence` and add accessories to h
       "accessory": "WifiPresence",
       "name": "Main Wifi",
       "room": "Living room",
-      "clients": ["MAC ADDRESS1"],
+      "clients": ["MAC ADDRESS1", "MAC ADDRESS2", ..., "MAC ADDRESSX"],
       "presenceFile": "/var/lib/misc/presence.wifi"
     }
   ],
@@ -33,11 +33,15 @@ Install plugin `npm install -g homebridge-wifipresence` and add accessories to h
 }
 ```
 
-`MAC ADDRESS1` is device wifi MAC for telling homebridge when this MAC is present, make the room occipied. It can have more than 1 MAC address.
+`MAC ADDRESSX` is the device WiFi MAC Address that you want to monitor. Once this MAC Address is connected to your network, Homebridge will then trigger the presence sensor to make the room occupied. You can add more than 1 MAC address, and they should be written in lower case (i.e.: `aa:bb:cc:dd:ee:ff`).
 
-`presenceFile` is path to list of MAC address, currently default is `/var/lib/misc/presence.wifi` same as in [presence.sh](presence.sh) script.
+`presenceFile` is the path to list of MAC addresses. Currently, the default path is `/var/lib/misc/presence.wifi`, the same as in [presence.sh](presence.sh) scripts.
 
-Run `presence.sh` file in router/access point to gathering devices MAC address from wifi interfaces.
+### Presence scripts
+Two presence scripts are provided:
+
+- `presence.sh`: To run on the router/access point to gather device MAC addresses from WiFi interfaces.
+- `presence.sh`: To run on the server where Homebridge is running, for when you do not have access or cannot run scripts on the router/access point.
 
 ## License
 
