@@ -46,7 +46,7 @@ class WifiPresenceAccessory {
       const content = yield accessory.readPresenceFile()
       const allMACs = content.trim().split('\n')
       const status = _.intersection(allMACs, accessory.mac).length > 0 ? OCCUPIED : NON_OCCUPIED
-      accessory.log(`Occupied statue: ${status}`)
+      accessory.log(`Occupied status: ${status}`)
 
       if (accessory.currentStatus !== status) {
         accessory.service.setCharacteristic(Characteristic.OccupancyDetected, status)
