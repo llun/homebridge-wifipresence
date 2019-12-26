@@ -41,7 +41,7 @@ Install plugin `npm install -g homebridge-wifipresence` and add accessories to h
 Two presence scripts are provided:
 
 - `presence.sh`: To run on the router/access point to gather device MAC addresses from WiFi interfaces.
-- `presence.sh`: To run on the server where Homebridge is running, for when you do not have access or cannot run scripts on the router/access point.
+- `presence_server.sh`: To run on the server where Homebridge is running, for when you do not have access or cannot run scripts on the router/access point.
 
 ## License
 
