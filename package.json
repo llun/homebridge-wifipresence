@@ -1,6 +1,6 @@
 {
   "name": "homebridge-wifipresence",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "Occupancy detection via wifi mac address",
   "main": "index.js",
   "keywords": [
