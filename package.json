@@ -12,7 +12,7 @@
   "license": "ISC",
   "dependencies": {
     "co": "^4.6.0",
-    "lodash": "^4.17.4"
+    "lodash": "^4.17.15"
   },
   "engines": {
     "node": ">=0.12.0",
