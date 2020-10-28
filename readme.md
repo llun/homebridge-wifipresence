@@ -22,7 +22,7 @@ Install plugin `npm install -g homebridge-wifipresence` and add accessories to h
       "accessory": "WifiPresence",
       "name": "Main Wifi",
       "room": "Living room",
-      "clients": ["MAC ADDRESS1", "MAC ADDRESS2", ..., "MAC ADDRESSX"],
+      "mac": ["MAC ADDRESS1", "MAC ADDRESS2", ..., "MAC ADDRESSX"],
       "presenceFile": "/var/lib/misc/presence.wifi"
     }
   ],
