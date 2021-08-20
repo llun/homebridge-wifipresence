@@ -8,6 +8,11 @@ let Service, Characteristic
 const OCCUPIED = 1
 const NON_OCCUPIED = 0
 
+// Stops execution for n milliseconds
+function msleep(n) {
+  Atomics.wait(new Int32Array(new SharedArrayBuffer(4)), 0, 0, n);
+}
+
 class WifiPresenceAccessory {
   constructor (log, config) {
     this.log = log
@@ -25,6 +30,11 @@ class WifiPresenceAccessory {
 
     fs.watch(this.presenceFile, { persistent: false }, (type, filename) => {
       if (type === 'change') {
+	// Sleep for 5 seconds to fix
+	//    Occupied statue: 0
+	//    Occupied statue: 1
+	// pattern
+	msleep(5000)
         this.isOccupied()
       }
     })
